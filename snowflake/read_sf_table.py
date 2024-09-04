@@ -1,23 +1,22 @@
 import snowflake.connector as sfc
 import pandas as pd
 import os
+import toml
 
 SF_USER = os.getenv('SF_USER')
 SF_PWD = os.getenv('SF_PWD')
 
-conn = sfc.connect(user=SF_USER,
-                   password=SF_PWD,
-                   account='zj01766.us-east4.gcp',
-                   warehouse='COMPUTE_WH',
-                   database='SNAROLIA_DB',
-                   schema='DATA',
-                   role='ACCOUNTADMIN')
+with open('C:/Users/siddg/Github/all_things_data/data-engineering/snowflake/connection_config.toml', 'r') as configfile:
+    config = toml.load(configfile)
 
-cursor = conn.cursor()
+config = config['default_connection']
 
-QUERY = 'select * from sample_generated_data;'
+conn = sfc.connect(password=SF_PWD,**config)
 
-cursor.execute(QUERY)
-data = cursor.fetchall()
-df = pd.DataFrame(data)
-df.to_csv('sample_generated_data.csv')
+def read_data(conn, query:str):
+    cursor = conn.cursor()
+    query = query
+    cursor.execute(query)
+    data = cursor.fetchall()
+    df = pd.DataFrame()
+    return df

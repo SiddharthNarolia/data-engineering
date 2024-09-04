@@ -1,0 +1,7 @@
+[default_connection]
+user = 'snarolia'
+account = 'zj01766.us-east4.gcp'
+warehouse = 'COMPUTE_WH'
+database = 'SNAROLIA_DB'
+schema = 'DATA'
+role = 'ACCOUNTADMIN'

@@ -1,5 +1,6 @@
-snowflake-connector-python==3.12.1
-pandas==2.2.2
-azure-storage-blob==12.22.0
-azure-identity==1.17.1
+snowflake-connector-python
+pandas
+azure-storage-blob
+azure-identity
 numpy<2
+toml
